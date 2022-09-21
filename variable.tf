@@ -5,3 +5,4 @@ variable "public_subnets" {
 
 variable "private_subnets" {
   description = "List of private subnets"
+}
