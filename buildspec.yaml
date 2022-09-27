@@ -8,3 +8,12 @@ phases:
       - yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
       - yum -y install terraform
       - echo "Terraform installation successful" 
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      # - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      # - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG      
+  post_build:
+    commands:
+      - echo Build completed on `date`
