@@ -14,7 +14,7 @@ phases:
       - install terrascan /usr/local/bin && rm terrascan
   build:
     commands:
-
-  artifacts:
+      - npm test
+artifacts:
   files:
     - '**/*'
