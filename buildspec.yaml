@@ -14,7 +14,17 @@ phases:
       - install terrascan /usr/local/bin && rm terrascan
   build:
     commands:
+      - sh ${CODEBUILD_SRC_DIR}/sns_util.sh "START"
+      - sh ${CODEBUILD_SRC_DIR}/tf.sh
+    finally:
+      - |
+        if [ "$CODEBUILD_BUILD_SUCCEEDING" = "0" ]; then
+            sh ${CODEBUILD_SRC_DIR}/sns_util.sh "FAILED" 
+        else
+            sh ${CODEBUILD_SRC_DIR}/sns_util.sh "SUCCESS"
+        fi
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      
 
-  artifacts:
-  files:
-    - '**/*'
